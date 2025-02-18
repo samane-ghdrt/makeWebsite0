@@ -18,7 +18,8 @@ main{
     width: 100%;
 }
 .card1{
-    border:  1px solid rgb(131, 131, 115);
+    border-bottom:  0.5px solid rgb(131, 131, 115);
+    border-top:  0.5px solid rgb(131, 131, 115);
     width: 100%;
     /* height: 20px; */
     display: flex;
@@ -71,4 +72,16 @@ div button{
     color: white;
     margin: 10px 10px;
     padding: 10px 20px;
+}
+.circleguess{
+ /* margin: 0 0; */
+width: 10px;
+height: 10px;
+margin-left: 10px;
+display: inline-block;
+border-radius: 50%;
+border: 1px solid black;
+}
+.guess {
+    display: flex;
 }
