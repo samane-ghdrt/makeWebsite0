@@ -1,7 +1,7 @@
 // import{getFromLocalStorage,saveToLocalStorage}from "./utils/storageUtils.js";
 const pstartEl=document.querySelector(".pStart");
 const penadEl=document.querySelector('.pEnd');
-let timein=10;
+let timein=5;
 let timesec=0;
 let number=10;
 // time & number
@@ -33,7 +33,7 @@ circleEl.forEach(circleE => {
       
       const circlechids = yourguess1El.children.length;
       console.log(circlechids);
-      if (circlechids < 8) {
+      if (circlechids < 6) {
         const cirEl=document.createElement('div');
         cirEl.classList.add("colors");
         cirEl.classList.add('circleguess');
@@ -58,7 +58,7 @@ circleEl.forEach(circleE => {
            arrColor.push("orange");
         }
       }else {
-         alert("You have to choose 8 colors")
+         alert("You have to choose 6 colors")
       }
        })
 });
@@ -70,51 +70,48 @@ circleEl.forEach(circleE => {
  let randomColor4=Math.floor(Math.random()*6);
  let randomColor5=Math.floor(Math.random()*6);
  let randomColor6=Math.floor(Math.random()*6);
- let randomColor7=Math.floor(Math.random()*6);
- let randomColor8=Math.floor(Math.random()*6);
- let randomColors = [arr[randomColor1], arr[randomColor2], arr[randomColor3], arr[randomColor4], arr[randomColor5], arr[randomColor6], arr[randomColor7], arr[randomColor8]];
+ let randomColors = [arr[randomColor1], arr[randomColor2], arr[randomColor3], arr[randomColor4], arr[randomColor5], arr[randomColor6]];
 console.log(randomColors);
  const submitEl=document.querySelector('.Submit');
  const yourguess2El=document.querySelector('.yourguess2');
  const winnerEl=document.querySelector('.winner')
  const pwinner=document.querySelector('.pwinner')
  function guess (){
+   
    const circlechids = yourguess1El.children.length;
-   if(circlechids===8){
-      yourguess1El.textContent="";
-      if (number>0) {
-         number--;
-         pstartEl.textContent=`Remaining Guesses:${number}`; 
-         const divEl0=document.createElement('div');
-         divEl0.style.display="block"
-         yourguess2El.append(divEl0);
-         const divEl=document.createElement('div');
-         divEl.classList.add('card2')
-         divEl0.append(divEl); 
-         console.log(arrColor);
-         arrColor.forEach(color => {
-            const cirEl=document.createElement('div');
-              cirEl.classList.add("colors");
-              cirEl.classList.add('circleguess');
-              cirEl.style.backgroundColor=color;
-              divEl.append(cirEl);
-         });
-         const paraEl=document.createElement('p');
-         const hrEl=document.createElement('hr');
-         divEl0.append(paraEl);
-         divEl0.append(hrEl);
+   if(circlechids===6){
+    yourguess1El.textContent="";
+ if (number>0) {
+   number--;
+   pstartEl.textContent=`Remaining Guesses:${number}`; 
+   const divEl0=document.createElement('div');
+   divEl0.style.display = "flex";
+   yourguess2El.append(divEl0);
+   const divEl=document.createElement('div');
+   divEl.classList.add('card2')
+   divEl0.append(divEl); 
+   console.log(arrColor);
+   arrColor.forEach(color => {
+      const cirEl=document.createElement('div');
+        cirEl.classList.add("colors");
+        cirEl.classList.add('circleguess');
+        cirEl.style.backgroundColor=color;
+        divEl.append(cirEl);
+   });
+   const paraEl=document.createElement('p');
+   divEl0.append(paraEl);
    let correct = 0;
    let misplaced = 0;
    let usedIndexes = [];
-   for (let i = 0; i < 8; i++) {
+   for (let i = 0; i < 6; i++) {
       if (randomColors[i] === arrColor[i]) {
           correct++;
           usedIndexes.push(i);
       }
   }
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 6; i++) {
    if (!usedIndexes.includes(i)) {
-       for (let j = 0; j < 8; j++) {
+       for (let j = 0; j < 6; j++) {
            if (!usedIndexes.includes(j) && randomColors[i] === arrColor[j]) {
                misplaced++;
                usedIndexes.push(j);
@@ -123,8 +120,9 @@ console.log(randomColors);
        }
    }
 }
-  paraEl.textContent=`Correct:${correct},Misplaced:${misplaced}`
+  paraEl.textContent=`Correct:${correct},Misplaced:${misplaced}`;
   arrColor = [];
+
 
   
  } else {
@@ -139,7 +137,7 @@ console.log(randomColors);
    pwinner.textContent="your color :winning colors"
  }
 }else{
-   alert('You have to choose 8 colors')
+   alert('You have to choose 6 colors')
 }
  }
  submitEl.addEventListener("click",guess);
